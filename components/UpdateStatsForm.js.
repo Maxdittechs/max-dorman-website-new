@@ -1,0 +1,26 @@
+import React from 'react';
+
+const UpdateStatsForm = () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const response = await fetch('/api/updateStats', {
+            method: 'POST',
+            body: formData
+        });
+        if (response.ok) {
+            console.log('Stats updated successfully');
+        } else {
+            console.error('Failed to update stats');
+        }
+    };
+
+    return (
+        <form id="updateStatsForm" onSubmit={handleSubmit}>
+            <input type="text" name="progress" placeholder="Enter your progress" required />
+            <button type="submit">Update Stats</button>
+        </form>
+    );
+};
+
+export default UpdateStatsForm;
